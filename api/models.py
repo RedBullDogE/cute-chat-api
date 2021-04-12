@@ -15,3 +15,6 @@ class Message(models.Model):
     def clean(self):
         if self.text == "":
             raise ValidationError("Message text should not be empty")
+
+    def __str__(self):
+        return f"{self.author_email}: {self.text}"

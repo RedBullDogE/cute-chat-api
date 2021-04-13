@@ -1,21 +1,23 @@
 language: python
 python:  
   - "3.8"
+
+services: postgresql
 # command to install dependencies
 install:
   - pip install pipenv
   - pipenv install
-# command to run tests
+before_script:
+  - psql -c "CREATE DATABASE mydb;" -U postgres
 script:
   - python manage.py test
 deploy:
   provider: elasticbeanstalk
-  access_key_id:
-    secure: $ACCESSKEYID
-  secret_access_key:
-    secure: $SECRETACCESSKEY
+  access_key_id: $ACCESSKEYID
+  secret_access_key: $SECRETACCESSKEY
   region: "eu-west-2"
   app: "db2-limited"
   env: "db2-limited-dev"
+  bucket_name: "elasticbeanstalk-eu-west-2-722928959547"
   on:
     branch: dev

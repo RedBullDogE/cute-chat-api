@@ -21,15 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv(
-    "SECRET_KEY", "django-insecure-o4!^+5!ino(1)l$vg6wcbeiourd)ul!@sjh3_w-apv)v98a)sn"
-)
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.getenv("DEBUG", True))
 
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split()
-ALLOWED_HOSTS = "127.0.0.1 localhost cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com".split()
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split()
 
 # Application definition
 
@@ -94,11 +92,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": os.getenv("DB_NAME", "cute_chat_db"),
-            "USER": os.getenv("DB_USER", "user"),
-            "PASSWORD": os.getenv("DB_PASSWORD", "password123"),
-            "HOST": os.getenv("DB_HOST", "localhost"),
-            "PORT": os.getenv("DB_PORT", "5432"),
+            "NAME": os.getenv("DB_NAME"),
+            "USER": os.getenv("DB_USER"),
+            "PASSWORD": os.getenv("DB_PASSWORD"),
+            "HOST": os.getenv("DB_HOST"),
+            "PORT": os.getenv("DB_PORT"),
         }
     }
 

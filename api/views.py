@@ -1,6 +1,5 @@
 from rest_framework import status
-from rest_framework.authentication import (SessionAuthentication,
-                                           TokenAuthentication)
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -53,8 +52,28 @@ class MessageViewSet(ModelViewSet):
     authentication_classes = (TokenAuthentication, SessionAuthentication)
 
     def destroy(self, request, pk=None):
-        message = get_object_or_404(self.queryset, pk=pk)
+        message = self.get_object()
         if message.author_email == request.user.email:
             message.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response("Access is denied", status=status.HTTP_403_FORBIDDEN)
+
+    def update(self, request, *args, **kwargs):
+        message = self.get_object()
+        if message.author_email == request.user.email:
+            serializer = self.serializer_class(message, request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data)
+        return Response("Access is denied", status=status.HTTP_403_FORBIDDEN)
+
+    def partial_update(self, request, *args, **kwargs):
+        message = self.get_object()
+        if message.author_email == request.user.email:
+            serializer = self.serializer_class(message, request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data)
         return Response("Access is denied", status=status.HTTP_403_FORBIDDEN)

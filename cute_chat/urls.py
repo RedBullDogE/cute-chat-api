@@ -53,5 +53,6 @@ doc_url_patterns = [
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("api.urls")),
+    path("auth/", include("chat_auth.urls")),
     path("docs/", include(doc_url_patterns)),
 ]

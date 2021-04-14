@@ -167,5 +167,7 @@ REST_FRAMEWORK = {
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "DRF Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
-    }
+    },
+    "LOGIN_URL": "/admin/login/",
+    "LOGOUT_URL": "/admin/logout/",
 }

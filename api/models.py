@@ -7,7 +7,7 @@ class Message(models.Model):
     Message Model that describes message entity in the chat.
     """
 
-    author_email = models.EmailField()
+    author_email = models.EmailField(editable=False)
     text = models.CharField(max_length=100, blank=False)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)

@@ -8,7 +8,6 @@ The application is deployed to AWS Elastic Beanstalk and has a configured CI/CD 
 
 ## Links
 
-Link to the project is (here)[http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/api/]
+Link to the project is [here](http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/api/)
 
-Documentation is also available: (swagger)[http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/docs/swagger/] and (ReDoc)[http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/docs/redoc/]
-
+Documentation is also available: [Swagger](http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/docs/swagger/) and [ReDoc](http://cute-chat-db2-dev.eu-west-2.elasticbeanstalk.com/docs/redoc/)
